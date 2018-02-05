@@ -14,7 +14,7 @@ import com.txmq.socketdemo.SocketDemoState;
  * exposes.  Endpoints self-report by issuing an ExoMessage, which is logged in state.
  * 
  */
-@Path("/HashgraphZoo/1.0.0") //TODO:  Remove HashgraphZoo prefix, give the internal APIs their own
+@Path("/Hashgraph/1.0.0")
 public class EndpointsApi {
 	@GET
 	@Path("/endpoints")

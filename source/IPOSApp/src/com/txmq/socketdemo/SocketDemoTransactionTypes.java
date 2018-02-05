@@ -3,12 +3,12 @@ package com.txmq.socketdemo;
 import com.txmq.exo.messaging.ExoTransactionType;
 
 public class SocketDemoTransactionTypes extends ExoTransactionType {
-	public static final String GET_ZOO = "GET_ZOO";
-	public static final String ADD_ANIMAL = "ADD_ANIMAL";
+	public static final String GET_DOCS = "GET_DOCS";
+	public static final String ADD_DOC = "ADD_DOC";
 	
 	private static final String[] values = {
-			GET_ZOO,
-			ADD_ANIMAL
+			GET_DOCS,
+			ADD_DOC
 	};
 	
 	public SocketDemoTransactionTypes() {

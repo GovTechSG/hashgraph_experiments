@@ -52,6 +52,8 @@ public class SocketDemoState extends ExoState implements SwirldState {
     public synchronized void handleTransaction(long id, boolean consensus,
                                                Instant timeCreated, byte[] transaction, Address address) {
 
+        //TODO GEt the transactions from couchdb
+
         super.handleTransaction(id, consensus, timeCreated, transaction, address);
     }
 

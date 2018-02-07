@@ -44,7 +44,6 @@ public class EndpointsApi {
 		if(state.getDocuments().size() == 0) {
 		    return Response.ok().entity(result).build();
         }
-        System.out.println("Able to retrive the documents");
 		result.setHash(state.getDocuments());
 		return Response.ok().entity(result).build();
 	}
@@ -66,5 +65,5 @@ public class EndpointsApi {
                 "  \"result\":"+transactionStatus+"\n" +
                 "}").build();
 	}
-	
+
 }

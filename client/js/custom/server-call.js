@@ -23,7 +23,7 @@ $.ajax({
     dataType: 'json',
     contentType: "application/json; charset=utf-8",
     success:function(res){
-    alert("it works!");
+        console.log(res);
 
     },
     error:function(res){

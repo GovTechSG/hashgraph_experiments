@@ -2,7 +2,7 @@ package com.txmq.exo.messaging.rest;
 
 import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
-import com.txmq.socketdemo.SocketDemoState;
+import com.txmq.socketdemo.IPOSState;
 import com.txmq.socketdemo.SocketDemoTransactionTypes;
 import ipos.hashgraph.model.Document;
 import ipos.hashgraph.model.Documents;
@@ -22,7 +22,7 @@ public class EndpointsApi {
 	@Path("/endpoints")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getEndpoints() {
-		SocketDemoState state = (SocketDemoState) ExoPlatformLocator.getPlatform().getState();
+		IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
 		return Response.ok().entity(state.getEndpoints()).build();
 	}
 
@@ -30,7 +30,7 @@ public class EndpointsApi {
     @Path("/state")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getState() {
-        SocketDemoState state = (SocketDemoState) ExoPlatformLocator.getPlatform().getState();
+        IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
         return Response.ok().entity(state).build();
     }
 
@@ -39,11 +39,12 @@ public class EndpointsApi {
 	@Path("/documents")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getDocuments() {
-		SocketDemoState state = (SocketDemoState) ExoPlatformLocator.getPlatform().getState();
+        IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
 		Documents result = new Documents();
 		if(state.getDocuments().size() == 0) {
 		    return Response.ok().entity(result).build();
         }
+
 		result.setHash(state.getDocuments());
 		return Response.ok().entity(result).build();
 	}

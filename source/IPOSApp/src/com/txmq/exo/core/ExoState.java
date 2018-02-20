@@ -1,17 +1,17 @@
 package com.txmq.exo.core;
 
-import java.io.IOException;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import com.swirlds.platform.Address;
 import com.swirlds.platform.AddressBook;
 import com.swirlds.platform.Platform;
 import com.swirlds.platform.SwirldState;
 import com.txmq.exo.messaging.ExoMessage;
-import com.txmq.socketdemo.SocketDemoState;
+import com.txmq.socketdemo.IPOSState;
+
+import java.io.IOException;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * ExoState is a base class for developers to extend when implementing Swirlds states.
@@ -59,8 +59,8 @@ public class ExoState {
 	 */
 	public synchronized void copyFrom(SwirldState old) {
 		endpoints = Collections.synchronizedList(new ArrayList<String>(((ExoState) old).endpoints));
-		addressBook = ((SocketDemoState) old).addressBook.copy();
-		myName = ((SocketDemoState) old).myName;
+		addressBook = ((IPOSState) old).addressBook.copy();
+		myName = ((IPOSState) old).myName;
 	}
 	
 	/**
@@ -83,6 +83,7 @@ public class ExoState {
 			ExoMessage message = ExoMessage.deserialize(transaction);
 			if (consensus) {
 				ExoPlatformLocator.getBlockLogger().addTransaction(message, this.myName);
+				//TODO Socket notification of the receipt
 			}
 			ExoPlatformLocator.getTransactionRouter().routeTransaction(message, this);				
 		} catch (ClassNotFoundException e) {

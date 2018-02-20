@@ -1,16 +1,15 @@
 package com.txmq.exo.persistence.couchdb;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.collections4.keyvalue.DefaultKeyValue;
-import org.apache.commons.collections4.map.HashedMap;
-import org.lightcouch.CouchDbClient;
-
 import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
 import com.txmq.exo.persistence.Block;
 import com.txmq.exo.persistence.IBlockLogger;
+import org.apache.commons.collections4.keyvalue.DefaultKeyValue;
+import org.apache.commons.collections4.map.HashedMap;
+import org.lightcouch.CouchDbClient;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Implementation of IBlockLogger for CouchDB.  The logger works by writing 

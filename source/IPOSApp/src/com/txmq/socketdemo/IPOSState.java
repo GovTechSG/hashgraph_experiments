@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SocketDemoState extends ExoState implements SwirldState {
+public class IPOSState extends ExoState implements SwirldState {
 
 
     private List<String> documents = Collections.synchronizedList(new ArrayList<String>());
@@ -29,7 +29,7 @@ public class SocketDemoState extends ExoState implements SwirldState {
 
     @Override
     public synchronized FastCopyable copy() {
-        SocketDemoState copy = new SocketDemoState();
+        IPOSState copy = new IPOSState();
         copy.copyFrom(this);
         return copy;
     }
@@ -45,7 +45,7 @@ public class SocketDemoState extends ExoState implements SwirldState {
     @Override
     public synchronized void copyFrom(SwirldState old) {
         super.copyFrom(old);
-        documents = Collections.synchronizedList(new ArrayList<>(((SocketDemoState) old).documents));
+        documents = Collections.synchronizedList(new ArrayList<>(((IPOSState) old).documents));
     }
 
     @Override

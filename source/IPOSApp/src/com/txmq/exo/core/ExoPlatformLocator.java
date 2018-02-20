@@ -1,14 +1,12 @@
 package com.txmq.exo.core;
 
-import java.io.IOException;
-import java.net.URI;
-
-import javax.ws.rs.core.UriBuilder;
-
+import com.swirlds.platform.Platform;
+import com.swirlds.platform.SwirldState;
 import com.txmq.exo.config.ExoConfig;
 import com.txmq.exo.config.MessagingConfig;
+import com.txmq.exo.messaging.ExoMessage;
 import com.txmq.exo.messaging.ExoTransactionType;
-import com.txmq.exo.messaging.socket.TransactionServer;
+import com.txmq.exo.messaging.rest.CORSFilter;
 import com.txmq.exo.persistence.BlockLogger;
 import com.txmq.exo.persistence.IBlockLogger;
 import com.txmq.exo.transactionrouter.ExoTransactionRouter;
@@ -16,17 +14,18 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import com.swirlds.platform.Platform;
-import com.swirlds.platform.SwirldState;
-import com.txmq.exo.messaging.ExoMessage;
-import com.txmq.exo.messaging.rest.CORSFilter;
+import javax.ws.rs.core.UriBuilder;
+import java.io.IOException;
+import java.net.URI;
+
+//import com.txmq.exo.messaging.socket.TransactionServer;
 
 /**
  * A static locator class for Exo platform constructs.  This class allows applications
  * to get access to Swirlds platform, Swirlds state, and the transaction router from
  * anywhere in the application.
- * 
- * I'm not in love with using static methods essentially as global variables.  I'd 
+ *
+ * I'm not in love with using static methods essentially as global variables.  I'd
  * love to hear ideas on a better way to approach this.
  */
 public class ExoPlatformLocator {
@@ -69,26 +68,9 @@ public class ExoPlatformLocator {
 		
 		init(platform, transactionTypeClass, config.hashgraphConfig.transactionProcessors);
 		
-		//Set up socket messaging, if it's in the config..
 		MessagingConfig messagingConfig = null;
-		if (config.hashgraphConfig.socketMessaging != null) {
-			try {
-				messagingConfig = parseMessagingConfig(config.hashgraphConfig.socketMessaging);
-				if (messagingConfig.secured == true) {
-					initSecuredSocketMessaging(	messagingConfig.port, 
-												messagingConfig.handlers, 
-												messagingConfig.clientKeystore.path, 
-												messagingConfig.clientKeystore.password, 
-												messagingConfig.serverKeystore.path, 
-												messagingConfig.serverKeystore.password);
-				} else {
-					initSocketMessaging(messagingConfig.port, messagingConfig.handlers);
-				}
-			} catch (IllegalArgumentException e) {
-				throw new IllegalArgumentException("Error configuring socket messaging:  " + e.getMessage());
-			}
-		}
-		
+
+
 		//Set up REST, if it's in the config..
 		if (config.hashgraphConfig.rest != null) {
 			try {
@@ -184,14 +166,14 @@ public class ExoPlatformLocator {
 	}
 	
 	
-	public static synchronized void init(	Platform platform, 
+	public static synchronized void init(	Platform platform,
 							Class<? extends ExoTransactionType> transactionTypeClass,
-							String[] transactionProcessorPackages, 
+							String[] transactionProcessorPackages,
 							IBlockLogger logger) {
 		init(platform, transactionTypeClass, transactionProcessorPackages);
 		blockLogger.setLogger(logger,  platform.getAddress().getSelfName());
-	}	
-	
+	}
+
 	/**
 	 * Initializes Grizzly-based REST interfaces defined in the included package list, listening on the included port.
 	 * Enabling REST will automatically expose the endpoints service and generate an ANNOUNCE_NODE message.
@@ -211,7 +193,7 @@ public class ExoPlatformLocator {
 		
 		System.out.println("Attempting to start Grizzly on " + baseUri);
 		GrizzlyHttpServerFactory.createHttpServer(baseUri, config);
-		
+
 		try {
 			platform.createTransaction(
 				new ExoMessage(
@@ -220,54 +202,11 @@ public class ExoPlatformLocator {
 				).serialize(),
 				null
 			);
-					
+
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	}
-	
-	/**
-	 * Sets up a socket-based API for communicating with this Swirld on the supplied 
-	 * port.  Scans the supplied list of packages for methods annotated with 
-	 * @ExoTransaction and automatically maps incoming messages to matching handlers.  
-	 * Any transactions which have not been mapped are passed through the platform to
-	 * be processed by the model.  
-	 * 
-	 * This method creates unsecured sockets with no authentication or in-transit encryption.  
-	 * Beware of dragons.
-	 * 
-	 * @param port
-	 * @param packages
-	 */
-	public static void initSocketMessaging(int port, String[] packages) {
-		new TransactionServer(platform, port, packages).start();
-	}
-	
-	/**
-	 * Sets up a TLS-encrypted socket-based API for communicating with this Swirld on 
-	 * the supplied port.  X.509 certs are used to authenticate connecting clients, 
-	 * and vice-versa.  Scans the supplied list of packages for methods annotated with 
-	 * @ExoTransaction and automatically maps incoming messages to matching handlers.  
-	 * Any transactions which have not been mapped are passed through the platform to
-	 * be processed by the model.
-	 * 
-	 * @param port
-	 * @param packages
-	 */
-	public static void initSecuredSocketMessaging(	int port, 
-													String[] packages, 
-													String clientKeystorePath,
-													String clientKeystorePassword,
-													String serverKeystorePath,
-													String serverKeystorePassword) {
-		new TransactionServer(	platform,
-								port, 
-								packages, 
-								clientKeystorePath, 
-								clientKeystorePassword, 
-								serverKeystorePath, 
-								serverKeystorePassword).start();
 	}
 	
 	/**

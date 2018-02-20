@@ -3,7 +3,7 @@ import com.swirlds.platform.Platform;
 import com.swirlds.platform.SwirldMain;
 import com.swirlds.platform.SwirldState;
 import com.txmq.exo.core.ExoPlatformLocator;
-import com.txmq.socketdemo.SocketDemoState;
+import com.txmq.socketdemo.IPOSState;
 
 
 public class IPOSAppMain implements SwirldMain {
@@ -42,6 +42,6 @@ public class IPOSAppMain implements SwirldMain {
 
 	@Override
 	public SwirldState newState() {
-		return new SocketDemoState();
+		return new IPOSState();
 	}
 }

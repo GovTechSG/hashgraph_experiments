@@ -4,6 +4,7 @@ import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
 import com.txmq.exo.persistence.Block;
 import com.txmq.exo.persistence.IBlockLogger;
+import ipos.hashgraph.utils.WebHookUtil;
 import org.apache.commons.collections4.keyvalue.DefaultKeyValue;
 import org.apache.commons.collections4.map.HashedMap;
 import org.lightcouch.CouchDbClient;
@@ -104,6 +105,7 @@ public class CouchDBBlockLogger implements IBlockLogger {
 			this.block.addTransaction(transaction);
 			if (this.block.getBlockSize() == this.BLOCK_SIZE) {
 				this.save(block);
+				WebHookUtil.postToWebHook(block);
 			}
 		} else {
 			Integer count = this.processedTransactions.get(transaction.uuidHash);

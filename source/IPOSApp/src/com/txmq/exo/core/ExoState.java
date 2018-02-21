@@ -83,7 +83,6 @@ public class ExoState {
 			ExoMessage message = ExoMessage.deserialize(transaction);
 			if (consensus) {
 				ExoPlatformLocator.getBlockLogger().addTransaction(message, this.myName);
-				//TODO Socket notification of the receipt
 			}
 			ExoPlatformLocator.getTransactionRouter().routeTransaction(message, this);				
 		} catch (ClassNotFoundException e) {

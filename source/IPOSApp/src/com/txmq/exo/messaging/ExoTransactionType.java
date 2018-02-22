@@ -9,7 +9,7 @@ import java.util.List;
  * base transaction type in an Exo application.  Applications should 
  * subclass ExoTransactionType and add the string keys identifying the 
  * transaction types their application supports in its constructor by
- * calling super.initialize(<my transactions>)
+ * calling super.initialize(<my transaction>)
  */
 public class ExoTransactionType implements Serializable {
 

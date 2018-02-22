@@ -3,13 +3,13 @@ package com.txmq.exo.persistence;
 import com.txmq.exo.messaging.ExoMessage;
 
 /**
- * A Block defines the "wrapper" for a set of transactions written out 
+ * A Block defines the "wrapper" for a set of transaction written out
  * to storage by an IBlockLogger.  Transactions are added to the block 
  * by Exo's block logging scheme until the block reaches capacity.  
  * "Capacity" is defined by the individual block logger, and could be 
  * based on transaction length, data size, or time-based.  One the block 
  * is "full", it gets marked as "committed".  A committed block cannot 
- * accept additional transactions, and will be written to storage and 
+ * accept additional transaction, and will be written to storage and
  * then discarded from memory.
  * 
  * @see IBlockLogger
@@ -19,7 +19,7 @@ import com.txmq.exo.messaging.ExoMessage;
 public class Block {
 
 	/**
-	 * Contents of the block - a list of transactions plus the previous 
+	 * Contents of the block - a list of transaction plus the previous
 	 * block's signature.  The contents are segregated from the block 
 	 * itself so that it can be hashed independently.
 	 * 
@@ -35,7 +35,7 @@ public class Block {
 	/**
 	 * Indicates that the block has been committed - 
 	 * either it has been or is about to be written 
-	 * to storage and cannot accept new transactions.
+	 * to storage and cannot accept new transaction.
 	 */
 	private boolean committed = false;
 
@@ -47,7 +47,7 @@ public class Block {
 	
 	/**
 	 * Accessor for block size.  In the default implementation, 
-	 * this is the number of transactions in the block.
+	 * this is the number of transaction in the block.
 	 */
 	public int getBlockSize() {
 		return this.contents.transactions.size();
@@ -93,14 +93,14 @@ public class Block {
 	 */
 	public void addTransaction(ExoMessage transaction) {
 		if (this.committed == true) {
-			throw new IllegalStateException("This block has already been committed.  No more transactions can be added to a committed block");
+			throw new IllegalStateException("This block has already been committed.  No more transaction can be added to a committed block");
 		}
 		this.contents.transactions.add(transaction);
 	}
 	
 	/**
 	 * Sets the block state to committed.  Once the block is marked 
-	 * as committed, it will refuse to accept additional transactions.
+	 * as committed, it will refuse to accept additional transaction.
 	 */
 	public void commit() {
 		if (this.contents.previousBlockHash == null) {

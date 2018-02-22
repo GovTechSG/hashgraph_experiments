@@ -3,7 +3,7 @@ package ipos.hashgraph.rest;
 import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
 import ipos.hashgraph.IPOSState;
-import ipos.hashgraph.transactions.TransactionTypes;
+import ipos.hashgraph.transaction.TransactionType;
 import ipos.hashgraph.model.Document;
 import ipos.hashgraph.model.Documents;
 
@@ -48,7 +48,7 @@ public class DocumentApi {
 	@POST
 	@Path("/document")
 	public Response addDocument(Document document) {
-		ExoMessage message = new ExoMessage(new TransactionTypes(TransactionTypes.ADD_DOC), document);
+		ExoMessage message = new ExoMessage(new TransactionType(TransactionType.ADD_DOC), document);
         boolean transactionStatus = false;
 		try {
 		    transactionStatus = ExoPlatformLocator.getPlatform().createTransaction(message.serialize(), null);

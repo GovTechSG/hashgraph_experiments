@@ -25,11 +25,11 @@ import java.util.Set;
  * will scan the package for @ExoTransaction annotations and catalog those
  * methods by the transactiont type they process.
  * 
- * States that inherit from ExoState will automatically route transactions
+ * States that inherit from ExoState will automatically route transaction
  * that come into the handleTransaction() method with no additional code 
  * (assuming you remembered to call super.handleTransaction()).
  * 
- * Methods that implement transactions must use the following signature:
+ * Methods that implement transaction must use the following signature:
  * 
  * @ExoTransaction("sometransaction")
  * public void myTransactionHandler(ExoMessage message, ExoState state)
@@ -95,7 +95,7 @@ public class ExoTransactionRouter {
 	/**
 	 * Routes an incoming transaction to its processor.  Application code 
 	 * should not need to call this method directly.  It is invoked by 
-	 * ExoState.handleTransaction() when transactions are received by the 
+	 * ExoState.handleTransaction() when transaction are received by the
 	 * Hashgraph state.
 	 * 
 	 * Internally, it looks for a method that handles the type of transaction

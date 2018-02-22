@@ -1,8 +1,8 @@
-package ipos.hashgraph.transactions;
+package ipos.hashgraph.transaction;
 
 import com.txmq.exo.messaging.ExoTransactionType;
 
-public class TransactionTypes extends ExoTransactionType {
+public class TransactionType extends ExoTransactionType {
 	public static final String GET_DOCS = "GET_DOCS";
 	public static final String ADD_DOC = "ADD_DOC";
 	
@@ -11,14 +11,14 @@ public class TransactionTypes extends ExoTransactionType {
 			ADD_DOC
 	};
 	
-	public TransactionTypes() {
+	public TransactionType() {
 		super();
 		if (getInitialized() == false) {
 			initialize(values);
 		}
 	}
 	
-	public TransactionTypes(String transactionType) {
+	public TransactionType(String transactionType) {
 		super();
 		if (getInitialized() == false) {
 			initialize(values);

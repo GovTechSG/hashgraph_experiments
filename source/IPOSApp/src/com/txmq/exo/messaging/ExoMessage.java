@@ -5,7 +5,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 /**
- * ExoMessage is the base wrapper for transactions that come in through Exo. 
+ * ExoMessage is the base wrapper for transaction that come in through Exo.
  * The framework is designed to work with instances of ExoMessage.  It is
  * unknown if it will work with subclasses of ExoMessage (likely not),
  * but it should be flexible enough for most cases.

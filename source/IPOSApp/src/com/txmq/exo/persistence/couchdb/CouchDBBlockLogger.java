@@ -88,14 +88,14 @@ public class CouchDBBlockLogger implements IBlockLogger {
 	}
 		
 	/**
-	 * Adds a trasnaction to the block.  The logger tracks transactions that
-	 * have been added to blocks to ensure that transactions are written 
+	 * Adds a trasnaction to the block.  The logger tracks transaction that
+	 * have been added to blocks to ensure that transaction are written
 	 * only once.
 	 * 
-	 * TODO:  We probably don't need to track the transactions any more.
+	 * TODO:  We probably don't need to track the transaction any more.
 	 * I was doing this while debugging the block writer.  The issue it
 	 * was intended to mitigate was probably fixed by tracking separate
-	 * loggers for each node, and only logging transactions that have 
+	 * loggers for each node, and only logging transaction that have
 	 * reached consensus
 	 */
 	@Override
@@ -143,7 +143,7 @@ public class CouchDBBlockLogger implements IBlockLogger {
 	 * 					CouchDB configuration.  Defaults to "http"
 	 * username			(optional) Specifies the username to log into couchDB with
 	 * password			(optional) Specifies the password to log into couchDB with
-	 * blockSize			(optional) Determines the number of transactions in 
+	 * blockSize			(optional) Determines the number of transaction in
 	 * 					a block.  Defaults to 4.
 	 * createDb			(optional) Create the database if it doesn't already exist
 	 */

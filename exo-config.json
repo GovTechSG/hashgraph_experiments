@@ -1,9 +1,9 @@
 {
 	"hashgraphConfig": {
-		"transactionTypesClassName": "ipos.hashgraph.transactions.TransactionTypes",
+		"transactionTypesClassName": "ipos.hashgraph.transaction.TransactionType",
 		"transactionProcessors": [
 			"ipos.hashgraph.rest",
-			"ipos.hashgraph.transactions"
+			"ipos.hashgraph.transaction"
 		],
 		"rest": {
 			"port": -1,

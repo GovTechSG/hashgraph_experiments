@@ -1,13 +1,13 @@
-package ipos.hashgraph.transactions;
+package ipos.hashgraph.transaction;
 
 import com.txmq.exo.messaging.ExoMessage;
 import com.txmq.exo.transactionrouter.ExoTransaction;
 import ipos.hashgraph.IPOSState;
 import ipos.hashgraph.model.Document;
 
-public class IPOSTransactions {
+public class IPOSTransaction {
 
-	@ExoTransaction(TransactionTypes.ADD_DOC)
+	@ExoTransaction(TransactionType.ADD_DOC)
 	public void addDocument(ExoMessage message, IPOSState state) {
 		Document document = (Document) message.payload;
 		state.addDocument(document.getHash());

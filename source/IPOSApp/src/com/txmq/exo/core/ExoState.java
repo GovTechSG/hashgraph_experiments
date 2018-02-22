@@ -17,7 +17,7 @@ import java.util.List;
  * ExoState is a base class for developers to extend when implementing Swirlds states.
  * ExoState encapsulates persisting the address book, enables the collection of data
  * about available endpoints (exposed by the endpoints API), and contains the hooks
- * for routing transactions using annotations.
+ * for routing transaction using annotations.
  * 
  * Developers should be sure to call super-methods when extending/implementing init, 
  * copyFrom, and handleTransaction when subclassing ExoState.

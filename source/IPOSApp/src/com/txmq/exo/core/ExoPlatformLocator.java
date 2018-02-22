@@ -195,9 +195,6 @@ public class ExoPlatformLocator {
             );
         }
 
-        result.secured = config.secured;
-        result.clientKeystore = config.clientKeystore;
-        result.serverKeystore = config.serverKeystore;
         return result;
     }
 

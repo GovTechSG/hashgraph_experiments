@@ -1,15 +1,10 @@
-package com.txmq.exo.messaging.rest;
-
-import java.io.IOException;
+package ipos.hashgraph.rest;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
+import java.io.IOException;
 
-/**
- * Basic CORS filter, allows access from any origin, and shuts 
- * Grizzly up when certain common headers are received in requests.
- */
 public class CORSFilter implements ContainerResponseFilter {
 
 	@Override

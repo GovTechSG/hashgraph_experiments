@@ -1,14 +1,13 @@
 package com.txmq.exo.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
 import java.io.IOException;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ExoConfig {
 	private static ExoConfig configuration;
 	
-	public ClientConfig clientConfig;
 	public HashgraphConfig hashgraphConfig;
 	
 	public static void loadConfiguration(String path) {

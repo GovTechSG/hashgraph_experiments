@@ -1,31 +1,15 @@
 {
 	"hashgraphConfig": {
-		"transactionTypesClassName": "com.txmq.socketdemo.SocketDemoTransactionTypes",
+		"transactionTypesClassName": "ipos.hashgraph.transactions.TransactionTypes",
 		"transactionProcessors": [
-			"com.txmq.exo.messaging.rest",
-			"com.txmq.socketdemo.transactions"
+			"ipos.hashgraph.rest",
+			"ipos.hashgraph.transactions"
 		],
-		"socketMessaging": {
-			"port": -1,
-			"derivedPort": 1000,
-			"secured": true,
-			"clientKeystore": {
-				"path": "client.public",
-				"password": "client"
-			},
-			"serverKeystore": {
-				"path": "server.private",
-				"password": "server"
-			},
-			"handlers": [
-				"com.txmq.socketdemo.socket"
-			]
-		},
 		"rest": {
 			"port": -1,
 			"derivedPort": 2000,
 			"handlers": [
-				"com.txmq.socketdemo.rest"
+				"ipos.hashgraph.rest"
 			]
 		},
 		"blockLogger": {

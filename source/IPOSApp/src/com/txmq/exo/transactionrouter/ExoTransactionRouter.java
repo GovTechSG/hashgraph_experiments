@@ -1,16 +1,15 @@
 package com.txmq.exo.transactionrouter;
 
+import com.txmq.exo.core.ExoState;
+import com.txmq.exo.messaging.ExoMessage;
+import org.reflections.Reflections;
+import org.reflections.scanners.MethodAnnotationsScanner;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import org.reflections.Reflections;
-import org.reflections.scanners.MethodAnnotationsScanner;
-
-import com.txmq.exo.messaging.ExoMessage;
-import com.txmq.exo.core.ExoState;
 
 /**
  * ExoTransactionRouter implements an annotation-based transaction routing 
@@ -72,7 +71,7 @@ public class ExoTransactionRouter {
 	}
 	
 	/**
-	 * Scans a package, e.g. "com.txmq.exo.messaging.rest" for 
+	 * Scans a package, e.g. "ipos.hashgraph.rest" for
 	 * @ExoTransaction annotations using reflection and sets up the
 	 * internal mapping of transaction type to processing method.
 	 */

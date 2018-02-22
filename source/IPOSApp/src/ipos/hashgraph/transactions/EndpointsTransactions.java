@@ -1,4 +1,4 @@
-package com.txmq.exo.messaging.rest;
+package ipos.hashgraph.transactions;
 
 import com.txmq.exo.messaging.ExoMessage;
 import com.txmq.exo.messaging.ExoTransactionType;

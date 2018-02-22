@@ -3,7 +3,7 @@ import com.swirlds.platform.Platform;
 import com.swirlds.platform.SwirldMain;
 import com.swirlds.platform.SwirldState;
 import com.txmq.exo.core.ExoPlatformLocator;
-import com.txmq.socketdemo.IPOSState;
+import ipos.hashgraph.IPOSState;
 
 
 public class IPOSAppMain implements SwirldMain {
@@ -26,7 +26,7 @@ public class IPOSAppMain implements SwirldMain {
 		platform.setAbout("Hello Swirld v. 1.0\n");
 		platform.setSleepAfterSync(sleepPeriod);
 
-		ExoPlatformLocator.initFromConfig(platform);
+		ExoPlatformLocator.initFromExoConfig(platform);
 	}
 
 	@Override

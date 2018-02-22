@@ -1,6 +1,6 @@
 *.idea
 *.iml
-source/IPOSApp/*.iml
-source/IPOSApp/target/*
-source/*.iml
-source/IPOSApp/target/*
+IPOSDemo/IPOSApp/*.iml
+IPOSDemo/IPOSApp/target/*
+IPOSDemo/*.iml
+IPOSDemo/IPOSApp/target/*

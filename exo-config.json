@@ -36,7 +36,7 @@
 				{ "key": "protocol", "value": "http"},
 				{ "key": "host", "value": "localhost"},
 				{ "key": "port", "value": "5984"},
-				{ "key": "blockSize", "value": 5},
+				{ "key": "blockSize", "value": 1},
 				{ "key": "createDb", "value": "true"}
 			]
 		}

@@ -7,8 +7,6 @@ public class Document implements Serializable {
 
     private String hash;
 
-    private String timestamp;
-
     private String userId;
 
     private Map<String, String> meta;
@@ -19,14 +17,6 @@ public class Document implements Serializable {
 
     public void setHash(String hash) {
         this.hash = hash;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getUserId() {
@@ -45,3 +35,5 @@ public class Document implements Serializable {
         this.meta = meta;
     }
 }
+
+

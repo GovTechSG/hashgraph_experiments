@@ -7,20 +7,18 @@ import com.txmq.socketdemo.SocketDemoTransactionTypes;
 import ipos.hashgraph.model.Document;
 import ipos.hashgraph.model.Documents;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 @Path("/Hashgraph/1.0.0")
-public class EndpointsApi {
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+public class DocumentApi {
 
 	@GET
 	@Path("/endpoints")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response getEndpoints() {
 		IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
 		return Response.ok().entity(state.getEndpoints()).build();
@@ -28,7 +26,6 @@ public class EndpointsApi {
 
 	@GET
     @Path("/state")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getState() {
         IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
         return Response.ok().entity(state).build();
@@ -37,7 +34,6 @@ public class EndpointsApi {
 
 	@GET
 	@Path("/documents")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response getDocuments() {
         IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
 		Documents result = new Documents();
@@ -51,7 +47,6 @@ public class EndpointsApi {
 
 	@POST
 	@Path("/document")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response addDocument(Document document) {
 		ExoMessage message = new ExoMessage(new SocketDemoTransactionTypes(SocketDemoTransactionTypes.ADD_DOC), document);
         boolean transactionStatus = false;

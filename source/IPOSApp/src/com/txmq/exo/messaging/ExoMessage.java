@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.UUID;
 
 /**
@@ -33,6 +34,8 @@ public class ExoMessage implements Serializable {
 	 */
 	public Serializable payload;
 
+
+	public Instant consensusTimestamp;
 	/**
 	 * Hash of a unique identifier.
 	 * 
@@ -67,6 +70,18 @@ public class ExoMessage implements Serializable {
 		this.payload = payload;
 		this.uuidHash = UUID.randomUUID().hashCode();
 	}
+
+	/**
+	 * Initialize this message with the supplied transaction type and payload.
+	 * @param transactionType
+	 */
+	public ExoMessage(int uuid, ExoTransactionType transactionType, Serializable payload, Instant consensusTimestamp) {
+		super();
+		this.transactionType = transactionType;
+		this.payload = payload;
+		this.uuidHash = uuid;
+		this.consensusTimestamp = consensusTimestamp;
+	}
 	
 	/**
 	 * Serialize this transaction to a sequence of bytes
@@ -100,4 +115,20 @@ public class ExoMessage implements Serializable {
 		
 		return result;
 	}
+
+    public ExoTransactionType getTransactionType() {
+        return transactionType;
+    }
+
+    public Serializable getPayload() {
+        return payload;
+    }
+
+    public Instant getConsensusTimestamp() {
+        return consensusTimestamp;
+    }
+
+    public int getUuidHash() {
+        return uuidHash;
+    }
 }

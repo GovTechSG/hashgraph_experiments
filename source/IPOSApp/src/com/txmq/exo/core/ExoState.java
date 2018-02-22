@@ -80,9 +80,10 @@ public class ExoState {
 			Instant timeCreated, byte[] transaction, Address address) {
 		
 		try {
-			ExoMessage message = ExoMessage.deserialize(transaction);
+            ExoMessage message = ExoMessage.deserialize(transaction);
 			if (consensus) {
-				ExoPlatformLocator.getBlockLogger().addTransaction(message, this.myName);
+                ExoMessage confirmedTransaction = new ExoMessage(message.getUuidHash(), message.getTransactionType(), message.getPayload(), timeCreated);
+				ExoPlatformLocator.getBlockLogger().addTransaction(confirmedTransaction, this.myName);
 			}
 			ExoPlatformLocator.getTransactionRouter().routeTransaction(message, this);				
 		} catch (ClassNotFoundException e) {

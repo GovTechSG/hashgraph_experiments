@@ -2,10 +2,10 @@ package ipos.hashgraph.rest;
 
 import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
-import ipos.hashgraph.IPOSState;
-import ipos.hashgraph.transaction.TransactionType;
+import ipos.hashgraph.IPOSAppState;
 import ipos.hashgraph.model.Document;
 import ipos.hashgraph.model.Documents;
+import ipos.hashgraph.transaction.TransactionType;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,14 +20,14 @@ public class DocumentApi {
 	@GET
 	@Path("/endpoints")
 	public Response getEndpoints() {
-		IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
+		IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
 		return Response.ok().entity(state.getEndpoints()).build();
 	}
 
 	@GET
     @Path("/state")
     public Response getState() {
-        IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
+        IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
         return Response.ok().entity(state).build();
     }
 
@@ -35,7 +35,7 @@ public class DocumentApi {
 	@GET
 	@Path("/documents")
 	public Response getDocuments() {
-        IPOSState state = (IPOSState) ExoPlatformLocator.getPlatform().getState();
+        IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
 		Documents result = new Documents();
 		if(state.getDocuments().size() == 0) {
 		    return Response.ok().entity(result).build();

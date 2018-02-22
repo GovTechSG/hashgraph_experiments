@@ -1,6 +1,5 @@
 package ipos.hashgraph;
 
-
 import com.swirlds.platform.*;
 import com.txmq.exo.core.ExoState;
 
@@ -9,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class IPOSState extends ExoState implements SwirldState {
-
+public class IPOSAppState extends ExoState implements SwirldState {
 
     private List<String> documents = Collections.synchronizedList(new ArrayList<String>());
 
@@ -29,7 +27,7 @@ public class IPOSState extends ExoState implements SwirldState {
 
     @Override
     public synchronized FastCopyable copy() {
-        IPOSState copy = new IPOSState();
+        IPOSAppState copy = new IPOSAppState();
         copy.copyFrom(this);
         return copy;
     }
@@ -45,7 +43,7 @@ public class IPOSState extends ExoState implements SwirldState {
     @Override
     public synchronized void copyFrom(SwirldState old) {
         super.copyFrom(old);
-        documents = Collections.synchronizedList(new ArrayList<>(((IPOSState) old).documents));
+        documents = Collections.synchronizedList(new ArrayList<>(((IPOSAppState) old).documents));
     }
 
     @Override

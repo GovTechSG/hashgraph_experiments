@@ -5,7 +5,7 @@ import com.swirlds.platform.AddressBook;
 import com.swirlds.platform.Platform;
 import com.swirlds.platform.SwirldState;
 import com.txmq.exo.messaging.ExoMessage;
-import ipos.hashgraph.IPOSState;
+import ipos.hashgraph.IPOSAppState;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -42,8 +42,8 @@ public class ExoState {
 	
 	public synchronized void copyFrom(SwirldState old) {
 		endpoints = Collections.synchronizedList(new ArrayList<String>(((ExoState) old).endpoints));
-		addressBook = ((IPOSState) old).addressBook.copy();
-		myName = ((IPOSState) old).myName;
+		addressBook = ((IPOSAppState) old).addressBook.copy();
+		myName = ((IPOSAppState) old).myName;
 	}
 	
 	public synchronized void handleTransaction(long id, boolean consensus,

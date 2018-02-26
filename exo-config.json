@@ -1,0 +1,28 @@
+{
+	"hashgraphConfig": {
+		"transactionTypesClassName": "ipos.hashgraph.transaction.TransactionType",
+		"transactionProcessors": [
+			"ipos.hashgraph.rest",
+			"ipos.hashgraph.transaction"
+		],
+		"rest": {
+			"port": -1,
+			"derivedPort": 2000,
+			"handlers": [
+				"ipos.hashgraph.rest"
+			]
+		},
+		"blockLogger": {
+			"loggerClass": "com.txmq.exo.persistence.couchdb.CouchDBBlockLogger",
+			"parameters": [
+				{ "key": "databaseName", "value": "ipos-"},
+				{ "key": "useAsPrefix", "value": "true"},
+				{ "key": "protocol", "value": "http"},
+				{ "key": "host", "value": "localhost"},
+				{ "key": "port", "value": "5984"},
+				{ "key": "blockSize", "value": 1},
+				{ "key": "createDb", "value": "true"}
+			]
+		}
+	}
+}

@@ -1,0 +1,6 @@
+version: "2"
+services:
+ couchdb:
+    image: couchdb:2.1
+    ports:
+      - "5984:5984"

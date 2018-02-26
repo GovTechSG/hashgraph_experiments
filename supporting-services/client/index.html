@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>IPOS Demo</title>
+
+    <meta name="author" content="minisha" />
+    <meta name="description" content="demo app" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/sha256.js"></script>
+    <script src="./js/custom/server-call.js"></script>
+
+    <link rel="stylesheet" href="./css/style.css" type="text/css" />
+
+</head>
+<body>
+
+<div class="flex-container">
+    <header>
+        <h1>IPOS Demo</h1>
+    </header>
+    <nav class="nav">
+    </nav>
+
+    <article class="article">
+        <h1> Get all Docs </h1> <button class="button", id="getallDocs" onclick="getDocuments()"> Docs </button>
+        <div id="data"></div>
+        <h1> Upload file </h1>
+        <input type="file" id="files" name="files[]" multiple />
+        <output id="list"></output>
+
+    </article>
+
+    <!--<footer>Copyright &copy; govTech</footer>-->
+</div>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      var value = sha256(f.name);
+      output.push('<strong>', 'Sha256: ', '</strong>', value,
+                  '&nbsp',
+                  '<button class="button", id="button", onclick="postDocuments(\'' + value+ '\')">', 'POST', '</button>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+</script>
+
+
+</body>
+</html>

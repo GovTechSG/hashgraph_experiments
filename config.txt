@@ -3,17 +3,15 @@
 #######################################################################################
 swirld, 123  
 
-# app,		HashgraphDemo.jar,	   1,0,0,0,0,0,0,0,0,0, all
-  app,		IPOSApp.jar,
-# app,		HelloSwirldDemo.jar
-# app,		CryptocurrencyDemo.jar
-# app,		StatsDemo.jar,		   0, 3000, 0, 100, 3000
-# app,		FilesystemDemo.jar
+  app,		IPOSApp.jar
+
+ #address,  A, Minisha,     1, 192.168.108.177, 50204, 192.168.109.120, 50204
+ #address,  B, Blockchain,  1, 52.237.253.87,   50204, 52.237.253.87,   50205
 
  address,  A, Alice,    1, 127.0.0.1, 50204, 127.0.0.1, 50204
  address,  B, Bob,      1, 127.0.0.1, 50205, 127.0.0.1, 50205
- address,  C, Carol,    1, 127.0.0.1, 50206, 127.0.0.1, 50206
- address,  D, Dave,     1, 127.0.0.1, 50207, 127.0.0.1, 50207
+ #address,  C, Carol,    1, 127.0.0.1, 50206, 127.0.0.1, 50206
+ #address,  D, Dave,     1, 127.0.0.1, 50207, 127.0.0.1, 50207
 
 # address,  E, Eric,     1, 127.0.0.1, 50204, 127.0.0.1, 50204
 # address,  F, Fred,     1, 127.0.0.1, 50205, 127.0.0.1, 50205

@@ -28,27 +28,21 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-
         <!-- swagger-->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-grizzly2-servlet</artifactId>
         </dependency>
-
-        <!--uncomment this to get JSON support:-->
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-jersey2-jaxrs -->
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-jersey2-jaxrs</artifactId>
             <version>1.5.12</version>
         </dependency>
         <!-- swagger -->
-
 
         <dependency>
             <groupId>org.glassfish.jersey.inject</groupId>

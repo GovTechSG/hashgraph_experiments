@@ -6,10 +6,11 @@ import com.txmq.exo.config.ExoConfig;
 import com.txmq.exo.config.MessagingConfig;
 import com.txmq.exo.messaging.ExoMessage;
 import com.txmq.exo.messaging.ExoTransactionType;
-import ipos.hashgraph.rest.CORSFilter;
+import io.swagger.jaxrs.config.BeanConfig;
 import com.txmq.exo.persistence.BlockLogger;
 import com.txmq.exo.persistence.IBlockLogger;
 import com.txmq.exo.transactionrouter.ExoTransactionRouter;
+import ipos.hashgraph.CORSFilter;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -66,16 +67,27 @@ public class ExoPlatformLocator {
 
 	public static void initREST(int port, String[] packages) {
 		URI baseUri = UriBuilder.fromUri("http://0.0.0.0").port(port).build();
-		ResourceConfig config = new ResourceConfig()
-				.register(new CORSFilter())
-				.register(JacksonFeature.class);
-		
+		String resources = "ipos.hashgraph.rest";
+		BeanConfig beanConfig = new BeanConfig();
+		beanConfig.setVersion("1.0.2");
+		beanConfig.setSchemes(new String[]{"http"});
+		beanConfig.setResourcePackage(resources);
+		beanConfig.setScan(true);
+
+		final ResourceConfig resourceConfig = new ResourceConfig();
+
+		resourceConfig.register(io.swagger.jaxrs.listing.ApiListingResource.class);
+		resourceConfig.register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+		resourceConfig.register(new CORSFilter());
+		resourceConfig.register(JacksonFeature.class);
+		resourceConfig.packages(resources);
+
 		for (String pkg : packages) {
-			config.packages(pkg);
+			resourceConfig.packages(pkg);
 		}
-		
+
 		System.out.println("Attempting to start Grizzly on " + baseUri);
-		GrizzlyHttpServerFactory.createHttpServer(baseUri, config);
+		GrizzlyHttpServerFactory.createHttpServer(baseUri, resourceConfig);
 
 		try {
 			platform.createTransaction(

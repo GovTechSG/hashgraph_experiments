@@ -2,6 +2,7 @@ package ipos.hashgraph.rest;
 
 import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
+import io.swagger.annotations.Api;
 import ipos.hashgraph.IPOSAppState;
 import ipos.hashgraph.model.Document;
 import ipos.hashgraph.model.Documents;
@@ -13,18 +14,19 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 @Path("/Hashgraph/1.0.0")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Api(value = "/Hashgraph/1.0.0", description = "Simple CRUD functions on Customer table")
 public class DocumentApi {
 
 	@GET
 	@Path("/endpoints")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getEndpoints() {
 		IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
 		return Response.ok().entity(state.getEndpoints()).build();
 	}
 
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
     @Path("/state")
     public Response getState() {
         IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
@@ -34,6 +36,7 @@ public class DocumentApi {
 
 	@GET
 	@Path("/documents")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getDocuments() {
         IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
 		Documents result = new Documents();
@@ -47,6 +50,8 @@ public class DocumentApi {
 
 	@POST
 	@Path("/document")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response addDocument(Document document) {
 		ExoMessage message = new ExoMessage(new TransactionType(TransactionType.ADD_DOC), document);
         boolean transactionStatus = false;

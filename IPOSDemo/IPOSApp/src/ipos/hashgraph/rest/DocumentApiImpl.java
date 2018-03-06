@@ -3,6 +3,7 @@ package ipos.hashgraph.rest;
 import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
 import io.swagger.annotations.Api;
+import io.swagger.jaxrs.PATCH;
 import ipos.hashgraph.IPOSAppState;
 import ipos.hashgraph.model.Document;
 import ipos.hashgraph.model.Documents;
@@ -12,6 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.Optional;
 
 @Path("/Hashgraph/1.0.0")
 @Api(value = "/Hashgraph/1.0.0", description = "Documents endpoints")
@@ -62,6 +64,23 @@ public class DocumentApiImpl {
 		return Response.status(201).entity("{\n" +
                 "  \"result\":"+transactionStatus+"\n" +
                 "}").build();
+	}
+
+	@GET
+	@Path("/verify/{hash}")
+	public Response verifyDoc(@PathParam("hash") String hash) {
+		IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
+		Optional<String> docHash = state.getDocuments().stream().filter(h -> h.equals(hash)).findAny();
+
+		if(docHash.isPresent()) {
+			return Response.ok().entity("{\n" +
+					"  \"result\": true\n" +
+					"}").build();
+		} else {
+			return Response.status(Response.Status.BAD_REQUEST).entity("{\n" +
+					"  \"error\":\"Not Found\"\n" +
+					"}").build();
+		}
 	}
 
 }

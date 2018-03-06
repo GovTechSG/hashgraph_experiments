@@ -9,23 +9,33 @@ import ipos.hashgraph.model.Documents;
 import ipos.hashgraph.transaction.TransactionType;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
-public class DocumentApiImpl  implements DocumentApi{
+@Path("/Hashgraph/1.0.0")
+@Api(value = "/Hashgraph/1.0.0", description = "Documents endpoints")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public class DocumentApiImpl {
 
+	@GET
+	@Path("/endpoints")
 	public Response getEndpoints() {
 		IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
 		return Response.ok().entity(state.getEndpoints()).build();
 	}
 
-
+	@GET
+	@Path("/state")
     public Response getState() {
         IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
         return Response.ok().entity(state).build();
     }
 
 
+	@GET
+	@Path("/documents")
 	public Response getDocuments() {
         IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
 		Documents result = new Documents();
@@ -37,6 +47,8 @@ public class DocumentApiImpl  implements DocumentApi{
 		return Response.ok().entity(result).build();
 	}
 
+	@POST
+	@Path("/document")
 	public Response addDocument(Document document) {
 		ExoMessage message = new ExoMessage(new TransactionType(TransactionType.ADD_DOC), document);
         boolean transactionStatus = false;

@@ -7,8 +7,10 @@
   </parent>
 
   <properties>
-    <sdk.dir>${project.basedir}/../..</sdk.dir>
-    <app.name>IPOSApp</app.name>
+      <app.repo>/Users/minisha/workspace/govTech/hashgraph_experiments/data/repos/app/</app.repo>
+      <platform.repo>/Users/minisha/workspace/govTech/hashgraph_experiments/data/repos/platform/</platform.repo>
+      <sdk.dir>/Users/minisha/workspace/govTech/hashgraph_experiments</sdk.dir>
+      <app.name>IPOSApp</app.name>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>

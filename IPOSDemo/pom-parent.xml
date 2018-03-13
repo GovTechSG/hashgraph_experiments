@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <properties>
-    <app.repo>${project.basedir}../data/repos/app/</app.repo>
-    <platform.repo>${project.basedir}../data/repos/platform/</platform.repo>
+    <app.repo>${project.baseUri}../data/repos/app/</app.repo>
+    <platform.repo>${project.baseUri}../data/repos/platform/</platform.repo>
     <sdk.dir>${project.basedir}/..</sdk.dir>
     <maven.deploy.skip>true</maven.deploy.skip>
     <app.name></app.name>

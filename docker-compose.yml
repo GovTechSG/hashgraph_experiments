@@ -19,3 +19,14 @@ services:
       replicas: 1
       restart_policy:
         condition: always
+  swagger:
+    build: "./supporting-services/swagger-ui-master/"
+    depends_on:
+      - hashgraph
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: always
+    ports:
+      - "8080:8080"
+

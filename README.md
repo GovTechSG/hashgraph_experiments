@@ -13,13 +13,12 @@ Make sure docker is installed properly with the command ```sudo docker version``
 ```sudo chmod +x /usr/bin/docker-compose``` <br/>
 ```docker-compose --version``` : should return ```docker-compose version 1.19.0, build 9e633ef```
 
-
 #### Steps for Deployment
 
 1) SSh to the target server. <br/> 
 ```ssh blockchain@xxx.xxx.xxx.xxx```
 2) Download and unzip the repo with the commands: <br />
-```wget https://github.com/GovTechSG/hashgraph_experiments/archive/master.zip```
+```wget https://github.com/GovTechSG/hashgraph_experiments/archive/master.zip```<br />
 ```unzip master.zip```
 3) Edit the config.txt file ip address with the corresponding server's vnet ip. <br/>
 Example: <br/>
@@ -35,6 +34,7 @@ Example: <br/>
 //TODO add the image of the output
 
 
+#### TODO To generate keys for the nodes
 
 
 

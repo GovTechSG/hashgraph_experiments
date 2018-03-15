@@ -34,7 +34,20 @@ Example: <br/>
 //TODO add the image of the output
 
 
-#### TODO To generate keys for the nodes
+#### To generate keys for the nodes if needed
+
+##### PreRequisties
+
+<b>Java 1.8: </b> Follow the steps in the link: https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04 to install java 8
+
+##### Steps to generate keys
+1) Generate the keys by executing the script: generate.sh <br/>
+Example: <br/>
+```cd /home/blockchain1/hashgraph_experiments-master/data/keys```  <br/>
+```./generate.sh```
+2) Copy the keys folder to another server if needed <br/>
+Example:<br/>
+```scp public.pfx  blockchain2@10.0.0.15://home/blockchain2/hashgraph_experiments-master/data/keys```
 
 
 

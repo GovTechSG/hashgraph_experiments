@@ -6,10 +6,12 @@
     <relativePath>../pom-parent.xml</relativePath>
   </parent>
 
-  <properties>
-    <sdk.dir>${project.basedir}/../..</sdk.dir>
-    <app.name>IPOSApp</app.name>
-  </properties>
+    <properties>
+        <app.repo>${project.baseUri}../../data/repos/app/</app.repo>
+        <platform.repo>${project.baseUri}../../data/repos/platform/</platform.repo>
+        <sdk.dir>${project.basedir}/../..</sdk.dir>
+        <app.name>IPOSApp</app.name>
+    </properties>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>IPOSApp</groupId>

@@ -6,7 +6,7 @@
 ```https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04```
 ###### Note: Complete Until step: 1 (Step 1 — Installing Docker) <br/>
 Make sure docker is installed properly with the command ```sudo docker version```. Expected output: <br/>
-![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/docker-version.png)
 
 3. <b>Docker compose (version docker-compose version 1.19.0, build 9e633ef):</b> Make sure docker compose is installed on the target server, if not installed, install with <br/> 
 ```sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose```<br/>

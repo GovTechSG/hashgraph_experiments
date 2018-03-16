@@ -6,9 +6,9 @@
 
 1. Set up the servers in the same vnet inorder for them to communicate with each other
 
-2. Open the port 52204, 8080 in the server by specifying the inbound and outbound ports to 52204 and 8080. </br>
+2. Open the port 52204-52207, 8080 in the server by specifying the inbound and outbound ports to 52204 and 8080. </br>
 8080 is for swagger <br/>
-52204 is for the hashgraph node <br/>
+52204-52207 is for hashgraph nodes <br/>
 
 ##### Note: Tested in server with the below configuration
 ![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/azure-servers.png)

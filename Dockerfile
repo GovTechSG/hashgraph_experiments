@@ -16,7 +16,5 @@ RUN cd IPOSDemo && mvn clean install -e
 
 
 FROM hg-build
-EXPOSE 51200-51299
-EXPOSE 50200-50299
-EXPOSE 52200-52299
+EXPOSE 52204-52207
 ENTRYPOINT ["java", "-jar", "swirlds.jar"]

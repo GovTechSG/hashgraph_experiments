@@ -97,7 +97,7 @@ Example: <br/>
 3) Edit config.txt with the private ip of the respective servers. <br/>
 Example: <br/>
  ```address,  A, Alice,    1, 10.0.0.4, 50204, 10.0.0.4, 50204``` <br/>
- ```#address,  B, Bob,      1, 10.0.0.5, 50204, 10.0.0.5, 50204```
+ ```address,  B, Bob,      1, 10.0.0.5, 50204, 10.0.0.5, 50204```
 
 4) Bring up the hashgraph node <br/>
 ```./build_and_run_hashgraph_node.sh```

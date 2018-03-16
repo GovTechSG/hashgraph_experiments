@@ -35,13 +35,13 @@ Make sure docker is installed properly with the command ```sudo docker version``
 2) Download and unzip the repo with the commands: <br />
 ```wget https://github.com/GovTechSG/hashgraph_experiments/archive/master.zip```<br />
 ```unzip master.zip```
-3) Edit the config.txt file ip address with the corresponding server's vnet ip. <br/>
+3) Edit the config.txt if required to add the nodes. <br/>
 Example: <br/>
  ```address,  A, Alice, 1, 127.0.0.1, 50204, 127.0.0.1, 50204``` <br/>
  ```address,  B, Bob,   1, 127.0.0.1, 50204, 127.0.0.1, 50204```
  
 4) Edit the swagger url in the docker file for the parameter: ENV API_URL <br/>
-```cd /home/blockchain1/hashgraph_experiments-master/supporting-services/swagger-ui-master``` <br/>
+```cd hashgraph_experiments-master/supporting-services/swagger-ui-master``` <br/>
 ```vim Dockerfile``` <br/>
 ``` ENV API_URL "http://13.82.94.181:52204/swagger.json"```
  
@@ -63,9 +63,55 @@ Expected output: <br/>
 
 
 
+## 2. Deployment steps for multi nodes cluster in different servers
 
+#### PreRequsites
 
+1. Java 1.8 
+2. Maven
+3. Docker (Refer above for installation steps)
+4. Docker compose (Refer above for installation steps)
+5. Unzip (Refer above for installation steps)
 
+#### Server set up
 
+1. Open the port 8080 and 52204 in the target server. 8080 for swagger and 52204 is for the hashgraph node
+
+#### Steps to deploy
+
+1) Download and unzip the repo with the commands: <br />
+```wget https://github.com/GovTechSG/hashgraph_experiments/archive/master.zip```<br />
+```unzip master.zip```
+
+2) Edit the swagger url in the docker file for the parameter: ENV API_URL <br/>
+Example: <br/>
+```cd hashgraph_experiments-master/supporting-services/swagger-ui-master``` <br/>
+```vim Dockerfile``` <br/>
+``` ENV API_URL "http://13.82.94.181:52204/swagger.json"```
+ 
+
+3) Change to hashgraph_experiments and bring up couchdb and swagger app with the command <br/>
+```cd hashgraph_experiments-master```
+```sudo docker-compose up```
+
+3) Edit config.txt with the private ip of the respective servers. <br/>
+Example: <br/>
+ ```address,  A, Alice,    1, 10.0.0.4, 50204, 10.0.0.4, 50204``` <br/>
+ ```address,  B, Bob,      1, 10.0.0.5, 50204, 10.0.0.5, 50204```
+
+4) Bring up the hashgraph node <br/>
+```./build_and_run_hashgraph_node.sh```
+
+5) Repeat the same steps: 1 to 4 on the other server. 
+
+##### Url to access the service:
+
+http://xxx.xxx.xxx.xxx:8080/ : This will bring up the swagger documentation for the hashgraph exposed rest endpoints.<br/>
+
+Expected output: <br/>
+
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/swagger-restendpoints.png)
+
+###### Notes: For the endpoints url if you see 2 entires then you can be sure that the nodes are in the cluster as expected
 
 

@@ -1,17 +1,5 @@
 version: "3"
 services:
-  hashgraph:
-    build: "./"
-    links:
-      - couchdb:couchdb
-    depends_on:
-      - couchdb
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: always
-    ports:
-      - "52204-52207:52204-52207"
   couchdb:
     image: couchdb:2.1
     ports:

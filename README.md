@@ -49,9 +49,21 @@ Example: <br/>
 ```cd hashgraph_experiments-master/``` <br/>
 ```sudo docker-compose up```
 
-<b>Sample output of docker-compose up:</b>
+<b>Expected output of docker-compose up:</b>
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/docker-ps.png)
 
-//TODO add the image of the output
+
+##### Url to access the service:
+
+http://xxx.xxx.xxx.xxx:8080/ : This will bring up the swagger documentation for the hashgraph exposed rest endpoints.<br/>
+
+Expected output: <br/>
+
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/swagger-restendpoints.png)
+
+
+
+
 
 
 

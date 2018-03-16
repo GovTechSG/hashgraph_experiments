@@ -4,6 +4,8 @@ services:
     build: "./"
     links:
       - couchdb:couchdb
+    depends_on:
+          - couchdb
     deploy:
       replicas: 1
       restart_policy:

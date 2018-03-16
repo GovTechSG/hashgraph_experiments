@@ -63,7 +63,7 @@ Expected output: <br/>
 
 
 
-## 2. Deployment of setting multi nodes in different servers
+## 2. Deployment steps for multi nodes cluster in different servers
 
 #### PreRequsites
 

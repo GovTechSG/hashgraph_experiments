@@ -35,7 +35,7 @@ Make sure docker is installed properly with the command ```sudo docker version``
 2) Download and unzip the repo with the commands: <br />
 ```wget https://github.com/GovTechSG/hashgraph_experiments/archive/master.zip```<br />
 ```unzip master.zip```
-3) Edit the config.txt file ip address with the corresponding server's vnet ip. <br/>
+3) Edit the config.txt if required to add the nodes. <br/>
 Example: <br/>
  ```address,  A, Alice, 1, 127.0.0.1, 50204, 127.0.0.1, 50204``` <br/>
  ```address,  B, Bob,   1, 127.0.0.1, 50204, 127.0.0.1, 50204```

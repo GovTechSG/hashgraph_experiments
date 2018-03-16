@@ -1,5 +1,8 @@
 FROM maven:3.3-jdk-8 AS hg-build
 
+
+RUN apt-get update && apt-get -y install haveged && update-rc.d haveged defaults
+
 RUN mkdir  -p /opt/maven/hashgraph-experiments
 ADD  ./IPOSDemo /opt/maven/hashgraph-experiments/IPOSDemo
 COPY ./swirlds.jar /opt/maven/hashgraph-experiments/swirlds.jar

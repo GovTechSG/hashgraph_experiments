@@ -1,5 +1,19 @@
 # Deployment in Ubuntu Server 16.04 LTS
 
+## 1. Deployment of multiple nodes in a single server
+
+#### Server setup
+
+1. Set up the servers in the same vnet inorder for them to communicate with each other
+
+2. Open the port 52204, 8080 in the server by specifying the inbound and outbound ports to 52204 and 8080. </br>
+8080 is for swagger <br/>
+52204 is for the hashgraph node <br/>
+
+##### Note: Tested in server with the below configuration
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/azure-servers.png)
+
+
 #### PreRequsites
 1. <b>Unzip:</b> Make sure unzip is installed on the target server, if it is not installed, install it with <br />```sudo apt-get install unzip```<br />
 2. <b>Docker (version 17.12.1-ce, build 7390fc6) </b> Make sure docker is installed on the target server, if not installed, install it with the instructions given in the below website<br />
@@ -13,6 +27,7 @@ Make sure docker is installed properly with the command ```sudo docker version``
 ```sudo chmod +x /usr/bin/docker-compose``` <br/>
 ```docker-compose --version``` : should return ```docker-compose version 1.19.0, build 9e633ef```
 
+
 #### Steps for Deployment
 
 1) SSh to the target server. <br/> 
@@ -22,10 +37,15 @@ Make sure docker is installed properly with the command ```sudo docker version``
 ```unzip master.zip```
 3) Edit the config.txt file ip address with the corresponding server's vnet ip. <br/>
 Example: <br/>
- ```address,  A, Alice, 1, 10.0.0.14, 50204, 10.0.0.4, 50204``` <br/>
- ```address,  B, Bob,   1, 10.0.0.15, 50204, 10.0.0.5, 50204```
+ ```address,  A, Alice, 1, 127.0.0.1, 50204, 127.0.0.1, 50204``` <br/>
+ ```address,  B, Bob,   1, 127.0.0.1, 50204, 127.0.0.1, 50204```
  
-4) Build and run the project <br />
+4) Edit the swagger url in the docker file for the parameter: ENV API_URL <br/>
+```cd /home/blockchain1/hashgraph_experiments-master/supporting-services/swagger-ui-master``` <br/>
+```vim Dockerfile``` <br/>
+``` ENV API_URL "http://13.82.94.181:52204/swagger.json"```
+ 
+5) Build and run the project <br />
 ```cd hashgraph_experiments-master/``` <br/>
 ```sudo docker-compose up```
 
@@ -33,21 +53,6 @@ Example: <br/>
 
 //TODO add the image of the output
 
-
-#### To generate keys for the nodes if needed
-
-##### PreRequisties
-
-<b>Java 1.8: </b> Follow the steps in the link: https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04 to install java 8
-
-##### Steps to generate keys
-1) Generate the keys by executing the script: generate.sh <br/>
-Example: <br/>
-```cd /home/blockchain1/hashgraph_experiments-master/data/keys```  <br/>
-```./generate.sh```
-2) Copy the keys folder to another server if needed <br/>
-Example:<br/>
-```scp public.pfx  blockchain2@10.0.0.15://home/blockchain2/hashgraph_experiments-master/data/keys```
 
 
 

@@ -32,7 +32,7 @@ swirld, 123
 # address,  K, Kent,     1, 10.0.0.10, 50210, 10.0.0.10, 50210
 # address,  L, Lucy,     1, 10.0.1.37, 50211, 10.0.1.37, 50211
 
-TLS, on   #on to enable TLS, off to disable. 
+TLS, off   #on to enable TLS, off to disable.
 
 #######################################################################################
 # The first line can be “swirld, “ and then a name for this swirld (shared world / ledger)

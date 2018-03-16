@@ -1,6 +1,6 @@
 # Deployment in Ubuntu Server 16.04 LTS
 
-## 1. Deployment of multiple nodes in a single server
+## 1. Deployment steps for multi-node cluster in same servers
 
 #### Server setup
 
@@ -63,7 +63,7 @@ Expected output: <br/>
 
 
 
-## 2. Deployment steps for multi nodes cluster in different servers
+## 2. Deployment steps for multi-node cluster in different servers
 
 #### PreRequsites
 

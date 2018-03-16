@@ -4,3 +4,4 @@ IPOSDemo/IPOSApp/*.iml
 IPOSDemo/IPOSApp/target/*
 IPOSDemo/*.iml
 IPOSDemo/IPOSApp/target/*
+logs/*

@@ -36,7 +36,7 @@ Make sure docker is installed properly with the command ```sudo docker version``
 3) Edit the config.txt if required to add the nodes. <br/>
 Example: <br/>
  ```address,  A, Alice, 1, 127.0.0.1, 50204, 127.0.0.1, 50204``` <br/>
- ```address,  B, Bob,   1, 127.0.0.1, 50204, 127.0.0.1, 50204```
+ ```address,  B, Bob,   1, 127.0.0.1, 50205, 127.0.0.1, 50205```
  
 4) Edit the swagger url in the docker file for the parameter: ENV API_URL <br/>
 ```cd hashgraph_experiments-master/supporting-services/swagger-ui-master``` <br/>

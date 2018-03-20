@@ -9,7 +9,7 @@
 52204-52207 is for hashgraph nodes <br/>
 
 ##### Note: Tested in server with the below configuration
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/azure-servers.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/azure-servers.png)
 
 
 #### PreRequsites
@@ -18,7 +18,7 @@
 ```https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04```
 ###### Note: Complete Until step: 1 (Step 1 — Installing Docker) <br/>
 Make sure docker is installed properly with the command ```sudo docker version```. Expected output: <br/>
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/docker-version.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/docker-version.png)
 
 3. <b>Docker compose (version docker-compose version 1.19.0, build 9e633ef):</b> Make sure docker compose is installed on the target server, if not installed, install with <br/> 
 ```sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose```<br/>
@@ -48,7 +48,7 @@ Example: <br/>
 ```sudo docker-compose up```
 
 <b>Expected output of docker-compose up:</b>
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/docker-ps.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/docker-ps.png)
 
 
 ##### Url to access the service:
@@ -57,7 +57,7 @@ http://xxx.xxx.xxx.xxx:8080/ : This will bring up the swagger documentation for 
 
 Expected output: <br/>
 
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/swagger-restendpoints.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/swagger-restendpoints.png)
 
 
 
@@ -110,7 +110,7 @@ http://xxx.xxx.xxx.xxx:8080/ : This will bring up the swagger documentation for 
 
 Expected output: <br/>
 
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/swagger-restendpoints.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/swagger-restendpoints.png)
 
 ###### Notes: For the endpoints url if you see 2 entires then you can be sure that the nodes are in the cluster as expected
 

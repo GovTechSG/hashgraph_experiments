@@ -4,14 +4,12 @@
 
 #### Server setup
 
-1. Set up the servers in the same vnet inorder for them to communicate with each other
-
-2. Open the port 52204-52207, 8080 in the server by specifying the inbound and outbound ports to 52204 and 8080. </br>
+1. Open the port 52204-52207, 8080 in the server by specifying the inbound and outbound ports to 52204 and 8080. </br>
 8080 is for swagger <br/>
 52204-52207 is for hashgraph nodes <br/>
 
 ##### Note: Tested in server with the below configuration
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/azure-servers.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/azure-servers.png)
 
 
 #### PreRequsites
@@ -20,7 +18,7 @@
 ```https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04```
 ###### Note: Complete Until step: 1 (Step 1 — Installing Docker) <br/>
 Make sure docker is installed properly with the command ```sudo docker version```. Expected output: <br/>
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/docker-version.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/docker-version.png)
 
 3. <b>Docker compose (version docker-compose version 1.19.0, build 9e633ef):</b> Make sure docker compose is installed on the target server, if not installed, install with <br/> 
 ```sudo curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose```<br/>
@@ -38,7 +36,7 @@ Make sure docker is installed properly with the command ```sudo docker version``
 3) Edit the config.txt if required to add the nodes. <br/>
 Example: <br/>
  ```address,  A, Alice, 1, 127.0.0.1, 50204, 127.0.0.1, 50204``` <br/>
- ```address,  B, Bob,   1, 127.0.0.1, 50204, 127.0.0.1, 50204```
+ ```address,  B, Bob,   1, 127.0.0.1, 50205, 127.0.0.1, 50205```
  
 4) Edit the swagger url in the docker file for the parameter: ENV API_URL <br/>
 ```cd hashgraph_experiments-master/supporting-services/swagger-ui-master``` <br/>
@@ -50,7 +48,7 @@ Example: <br/>
 ```sudo docker-compose up```
 
 <b>Expected output of docker-compose up:</b>
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/docker-ps.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/docker-ps.png)
 
 
 ##### Url to access the service:
@@ -59,7 +57,7 @@ http://xxx.xxx.xxx.xxx:8080/ : This will bring up the swagger documentation for 
 
 Expected output: <br/>
 
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/swagger-restendpoints.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/swagger-restendpoints.png)
 
 
 
@@ -75,7 +73,9 @@ Expected output: <br/>
 
 #### Server set up
 
-1. Open the port 8080 and 52204 in the target server. 8080 for swagger and 52204 is for the hashgraph node
+1. Set up the servers in the same vnet inorder for them to communicate with each other
+
+2. Open the port 8080 and 52204 in the target server. 8080 for swagger and 52204 is for the hashgraph node
 
 #### Steps to deploy
 
@@ -110,7 +110,7 @@ http://xxx.xxx.xxx.xxx:8080/ : This will bring up the swagger documentation for 
 
 Expected output: <br/>
 
-![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/readme/images/swagger-restendpoints.png)
+![alt text](https://github.com/GovTechSG/hashgraph_experiments/blob/master/images/swagger-restendpoints.png)
 
 ###### Notes: For the endpoints url if you see 2 entires then you can be sure that the nodes are in the cluster as expected
 

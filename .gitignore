@@ -4,4 +4,11 @@ IPOSDemo/IPOSApp/*.iml
 IPOSDemo/IPOSApp/target/*
 IPOSDemo/*.iml
 IPOSDemo/IPOSApp/target/*
-logs/*
+logs/*.DS_Store
+.gitignoregit
+IPOSDemo/.DS_Store
+IPOSDemo/IPOSApp/.DS_Store
+IPOSDemo/IPOSApp/dependency-reduced-pom.xml
+data/apps/
+data/lib/
+supporting-services/webhook/.DS_Store

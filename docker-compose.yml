@@ -1,7 +1,6 @@
 version: "3"
 services:
-  hashgraph1:
-    container_name: "app1"
+  hashgraph:
     build: "./"
     links:
       - couchdb:couchdb
@@ -11,28 +10,8 @@ services:
       replicas: 1
       restart_policy:
         condition: always
-    networks:
-      static-network:
-        ipv4_address: 172.255.128.1
     ports:
-      - "50204:50204"
-      - "52204:52204"
-  hashgraph2:
-    container_name: "app2"
-    build: "./"
-    links:
-      - couchdb:couchdb
-    depends_on:
-      - couchdb
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: always
-    networks:
-      static-network:
-        ipv4_address: 172.255.128.2
-    ports:
-      - "50205:50205"
+      - "52204-52207:52204-52207"
   couchdb:
     image: couchdb:2.1
     ports:
@@ -42,18 +21,14 @@ services:
       restart_policy:
         condition: always
   swagger:
-    build: "./supporting-services/swagger-ui-master/"
+    image: "swaggerapi/swagger-ui"
     depends_on:
-      - hashgraph1
-      - hashgraph2
+      - hashgraph
     deploy:
       replicas: 1
       restart_policy:
         condition: always
     ports:
       - "8080:8080"
-networks:
-  static-network:
-    ipam:
-      config:
-        - subnet: 172.255.0.0/16
+    environment:
+      - API_URL= http://0.0.0.0:52204/swagger.json

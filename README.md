@@ -4,9 +4,7 @@
 
 #### Server setup
 
-1. Set up the servers in the same vnet inorder for them to communicate with each other
-
-2. Open the port 52204-52207, 8080 in the server by specifying the inbound and outbound ports to 52204 and 8080. </br>
+1. Open the port 52204-52207, 8080 in the server by specifying the inbound and outbound ports to 52204 and 8080. </br>
 8080 is for swagger <br/>
 52204-52207 is for hashgraph nodes <br/>
 
@@ -75,7 +73,9 @@ Expected output: <br/>
 
 #### Server set up
 
-1. Open the port 8080 and 52204 in the target server. 8080 for swagger and 52204 is for the hashgraph node
+1. Set up the servers in the same vnet inorder for them to communicate with each other
+
+2. Open the port 8080 and 52204 in the target server. 8080 for swagger and 52204 is for the hashgraph node
 
 #### Steps to deploy
 

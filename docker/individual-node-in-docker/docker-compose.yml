@@ -1,0 +1,42 @@
+version: "3"
+services:
+  hashgraphnodeone:
+    build: "./"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: always
+    ports:
+      - "52204:52204"
+    networks:
+      static-network:
+        ipv4_address: 172.255.128.1
+  hashgraphnodetwo:
+    build: "./"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: always
+    ports:
+      - "52205:52205"
+    networks:
+      static-network:
+        ipv4_address: 172.255.128.2
+  swagger:
+    image: "swaggerapi/swagger-ui"
+    depends_on:
+      - hashgraphnodeone
+      - hashgraphnodetwo
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: always
+    ports:
+      - "8080:8080"
+    environment:
+      - API_URL=http://0.0.0.0:52204/swagger.json
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.255.0.0/16

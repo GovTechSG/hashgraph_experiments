@@ -9,7 +9,7 @@ services:
       restart_policy:
         condition: always
   swagger:
-    build: "./supporting-services/swagger-ui-master/"
+    image: "swaggerapi/swagger-ui"
     depends_on:
       - hashgraph
     deploy:
@@ -18,3 +18,5 @@ services:
         condition: always
     ports:
       - "8080:8080"
+    environment:
+      - API_URL=http://0.0.0.0:52204/swagger.json

@@ -2,6 +2,8 @@ package ipos.hashgraph;
 
 import com.swirlds.platform.*;
 import com.txmq.exo.core.ExoState;
+import com.txmq.exo.messaging.ExoMessage;
+import ipos.hashgraph.model.Document;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -10,14 +12,14 @@ import java.util.List;
 
 public class IPOSAppState extends ExoState implements SwirldState {
 
-    private List<String> documents = Collections.synchronizedList(new ArrayList<String>());
+    private List<ExoMessage> documents = Collections.synchronizedList(new ArrayList<ExoMessage>());
 
-    public synchronized List<String> getDocuments() {
+    public synchronized List<ExoMessage> getDocuments() {
         return documents;
     }
 
-    public synchronized void addDocument(String name) {
-        this.documents.add(name);
+    public synchronized void addDocument(ExoMessage document) {
+        this.documents.add(document);
     }
 
     @Override

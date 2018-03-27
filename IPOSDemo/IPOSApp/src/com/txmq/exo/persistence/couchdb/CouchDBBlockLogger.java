@@ -104,10 +104,9 @@ public class CouchDBBlockLogger implements IBlockLogger {
 		if (!this.processedTransactions.containsKey(transaction.uuidHash)) { 
 			this.processedTransactions.put(transaction.uuidHash, 1);
 			this.block.addTransaction(transaction);
-			//if (this.block.getBlockSize() == this.BLOCK_SIZE) {
+			if (this.block.getBlockSize() == this.BLOCK_SIZE) {
 				this.save(block);
-				//WebHookUtil.postToWebHook(block);
-			//}
+			}
 		} else {
 			Integer count = this.processedTransactions.get(transaction.uuidHash);
 			this.processedTransactions.put(transaction.uuidHash, count + 1);

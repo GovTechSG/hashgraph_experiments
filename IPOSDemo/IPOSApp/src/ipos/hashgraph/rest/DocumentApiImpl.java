@@ -7,6 +7,7 @@ import ipos.hashgraph.IPOSAppState;
 import ipos.hashgraph.model.ConsensedDocument;
 import ipos.hashgraph.model.Document;
 import ipos.hashgraph.transaction.TransactionType;
+import ipos.hashgraph.utils.MessageTransformer;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -45,7 +46,7 @@ public class DocumentApiImpl {
 		    return Response.ok().entity(state.getDocuments()).build();
         }
 
-        List<ConsensedDocument> consensedDocuments = state.getDocuments().stream().map(m -> getConsensedDocument(m)).collect(Collectors.toList());
+        List<ConsensedDocument> consensedDocuments = state.getDocuments().stream().map(m -> MessageTransformer.getConsensedDocument(m)).collect(Collectors.toList());
         return Response.ok().entity(consensedDocuments).build();
 	}
 
@@ -77,7 +78,7 @@ public class DocumentApiImpl {
 
 		if(docHash.isPresent()) {
             ExoMessage exoMessage = docHash.get();
-            ConsensedDocument consensedDocument = getConsensedDocument(exoMessage);
+            ConsensedDocument consensedDocument = MessageTransformer.getConsensedDocument(exoMessage);
             return Response.ok().entity(consensedDocument).build();
 		} else {
 			return Response.status(Response.Status.BAD_REQUEST).entity("{\n" +
@@ -85,14 +86,4 @@ public class DocumentApiImpl {
 					"}").build();
 		}
 	}
-
-    private ConsensedDocument getConsensedDocument(ExoMessage exoMessage) {
-        ConsensedDocument consensedDocument = new ConsensedDocument();
-        consensedDocument.setId(exoMessage.getUuidHash());
-        consensedDocument.setConsensusTimestamp(exoMessage.getConsensusTimestamp());
-        consensedDocument.setPayload(exoMessage.getPayload());
-        consensedDocument.setTransactionType(exoMessage.getTransactionType().getValue());
-        return consensedDocument;
-    }
-
 }

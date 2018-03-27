@@ -1,5 +1,6 @@
 package ipos.hashgraph.utils;
 
+import com.txmq.exo.messaging.ExoMessage;
 import com.txmq.exo.persistence.Block;
 import ipos.hashgraph.utils.marshaller.JacksonMarshaller;
 import ipos.hashgraph.utils.marshaller.Marshaller;
@@ -13,17 +14,17 @@ import java.io.UnsupportedEncodingException;
 
 public class WebHookUtil {
 
-    public static void postToWebHook(Block block) {
-        String url = "http://localhost:8080/webhook";
+    public static void postToWebHook(ExoMessage message) {
+        String url = "http://localhost:8081/webhook";
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPut httpput = new HttpPut(url);
         httpput.addHeader("Content-type", "application/json");
         StringEntity params = null;
         try {
             Marshaller marshaller = new JacksonMarshaller();
-            params = new StringEntity(marshaller.marshalLenient(block));
+            params = new StringEntity(marshaller.marshalLenient(MessageTransformer.getConsensedDocument(message)));
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace(); //TODO
+            e.printStackTrace();
         }
 
         params.setContentType("application/json");

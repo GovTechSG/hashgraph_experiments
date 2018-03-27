@@ -9,7 +9,7 @@ COPY ./swirlds.jar /opt/maven/hashgraph-experiments/swirlds.jar
 COPY ./config.txt /opt/maven/hashgraph-experiments/config.txt
 COPY ./data /opt/maven/hashgraph-experiments/data
 COPY ./exo-config-docker.json /opt/maven/hashgraph-experiments/exo-config.json
-
+COPY ./entrypoint.sh /opt/maven/hashgraph-experiments/entrypoint.sh
 WORKDIR /opt/maven/hashgraph-experiments
 
 RUN cd IPOSDemo && mvn clean install -e
@@ -17,4 +17,4 @@ RUN cd IPOSDemo && mvn clean install -e
 
 FROM hg-build
 EXPOSE 52204-52207
-ENTRYPOINT ["java", "-jar", "swirlds.jar"]
+ENTRYPOINT ["/opt/maven/hashgraph-experiments/entrypoint.sh"]

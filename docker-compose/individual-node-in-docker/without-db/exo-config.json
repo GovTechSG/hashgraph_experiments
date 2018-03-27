@@ -1,0 +1,16 @@
+{
+  "hashgraphConfig": {
+    "transactionTypesClassName": "ipos.hashgraph.transaction.TransactionType",
+    "transactionProcessors": [
+      "ipos.hashgraph.rest",
+      "ipos.hashgraph.transaction"
+    ],
+    "rest": {
+      "port": -1,
+      "derivedPort": 2000,
+      "handlers": [
+        "ipos.hashgraph.rest"
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+containers:
+  c1:
+    image: 4411316b1196
+    expose: [52204]
+    ports:
+      52204: 52204
+
+  c2:
+    image: 4411316b1196
+    expose: [52205]
+    ports:
+          52205: 52205
+    links:
+      c1: c1
+      c3: c3
+
+  c3:
+     image: 4411316b1196
+     expose: [52206]
+     ports:
+           52206: 52206
+     links:
+       c1: c1
+       c2: c2

@@ -11,6 +11,7 @@ import org.lightcouch.CouchDbClient;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Implementation of IBlockLogger for CouchDB.  The logger works by writing 
@@ -26,7 +27,7 @@ public class CouchDBBlockLogger implements IBlockLogger {
 	private int BLOCK_SIZE = 1;
 	private Block block;
 	private CouchDbClient client;
-	private Map<Integer, Integer> processedTransactions = new HashedMap<Integer, Integer>();
+	private Map<UUID, Integer> processedTransactions = new HashedMap<>();
 	
 	/**
 	 * No-op constructor, intended to be used in conjunction with the configure() method.  

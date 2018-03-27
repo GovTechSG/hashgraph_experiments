@@ -24,29 +24,29 @@ public class ExoMessage implements Serializable {
 
 	public Instant consensusTimestamp;
 
-	public int uuidHash;
+	public UUID uuidHash;
 
 	
 	public ExoMessage() {
 		super();
 		this.transactionType = new ExoTransactionType();
-		this.uuidHash = UUID.randomUUID().hashCode();
+		this.uuidHash = UUID.randomUUID();
 	}
 	
 	public ExoMessage(ExoTransactionType transactionType) {
 		super();
 		this.transactionType = transactionType;	
-		this.uuidHash = UUID.randomUUID().hashCode();
+		this.uuidHash = UUID.randomUUID();
 	}
 	
 	public ExoMessage(ExoTransactionType transactionType, Serializable payload) {
 		super();
 		this.transactionType = transactionType;				
 		this.payload = payload;
-		this.uuidHash = UUID.randomUUID().hashCode();
+		this.uuidHash = UUID.randomUUID();
 	}
 
-	public ExoMessage(int uuid, ExoTransactionType transactionType, Serializable payload, Instant consensusTimestamp) {
+	public ExoMessage(UUID uuid, ExoTransactionType transactionType, Serializable payload, Instant consensusTimestamp) {
 		super();
 		this.transactionType = transactionType;
 		this.payload = payload;
@@ -82,7 +82,7 @@ public class ExoMessage implements Serializable {
         return consensusTimestamp;
     }
 
-    public int getUuidHash() {
+    public UUID getUuidHash() {
         return uuidHash;
     }
 }

@@ -3,19 +3,20 @@ package ipos.hashgraph.rest;
 import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
 import io.swagger.annotations.Api;
-import io.swagger.jaxrs.PATCH;
 import ipos.hashgraph.IPOSAppState;
+import ipos.hashgraph.model.ConsensedDocument;
 import ipos.hashgraph.model.Document;
-import ipos.hashgraph.model.Documents;
 import ipos.hashgraph.transaction.TransactionType;
 
-import javax.print.Doc;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Path("/Hashgraph/1.0.0")
 @Api(value = "/Hashgraph/1.0.0", description = "Documents endpoints")
@@ -46,7 +47,8 @@ public class DocumentApiImpl {
 		    return Response.ok().entity(state.getDocuments()).build();
         }
 
-		return Response.ok().entity(state.getDocuments()).build();
+        List<ConsensedDocument> consensedDocuments = state.getDocuments().stream().map(m -> getConsensedDocument(m)).collect(Collectors.toList());
+        return Response.ok().entity(consensedDocuments).build();
 	}
 
 	@POST
@@ -76,12 +78,23 @@ public class DocumentApiImpl {
 		}).findAny();
 
 		if(docHash.isPresent()) {
-			return Response.ok().entity(docHash.get()).build();
+            ExoMessage exoMessage = docHash.get();
+            ConsensedDocument consensedDocument = getConsensedDocument(exoMessage);
+            return Response.ok().entity(consensedDocument).build();
 		} else {
 			return Response.status(Response.Status.BAD_REQUEST).entity("{\n" +
 					"  \"error\":\"Not Found\"\n" +
 					"}").build();
 		}
 	}
+
+    private ConsensedDocument getConsensedDocument(ExoMessage exoMessage) {
+        ConsensedDocument consensedDocument = new ConsensedDocument();
+        consensedDocument.setId(exoMessage.getUuidHash());
+        consensedDocument.setConsensusTimestamp(exoMessage.getConsensusTimestamp());
+        consensedDocument.setPayload(exoMessage.getPayload());
+        consensedDocument.setTransactionType(exoMessage.getTransactionType().getValue());
+        return consensedDocument;
+    }
 
 }

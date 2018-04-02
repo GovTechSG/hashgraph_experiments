@@ -56,7 +56,7 @@ public class ExoState {
                 ExoMessage confirmedTransaction = new ExoMessage(message.getUuidHash(), message.getTransactionType(), message.getPayload(), timeCreated);
 				ExoPlatformLocator.getBlockLogger().addTransaction(confirmedTransaction, this.myName);
 				ExoPlatformLocator.getTransactionRouter().routeTransaction(confirmedTransaction, this);
-				WebHookUtil.postToWebHook(confirmedTransaction);
+				//WebHookUtil.postToWebHook(confirmedTransaction);
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

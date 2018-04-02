@@ -10,7 +10,7 @@ public class ConsensedDocument {
 
     String transactionType;
     Serializable payload;
-    Instant consensusTimestamp;
+    String consensusTimestamp;
     UUID id;
 
     public Serializable getPayload() {
@@ -21,11 +21,11 @@ public class ConsensedDocument {
         this.payload = payload;
     }
 
-    public Instant getConsensusTimestamp() {
+    public String getConsensusTimestamp() {
         return consensusTimestamp;
     }
 
-    public void setConsensusTimestamp(Instant consensusTimestamp) {
+    public void setConsensusTimestamp(String consensusTimestamp) {
         this.consensusTimestamp = consensusTimestamp;
     }
 

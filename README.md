@@ -114,4 +114,5 @@ Expected output: <br/>
 
 ###### Notes: For the endpoints url if you see 2 entires then you can be sure that the nodes are in the cluster as expected
 
-
+## LICENSE: <br/>
+https://github.com/GovTechSG/hashgraph_experiments/blob/master/LICENSE.md

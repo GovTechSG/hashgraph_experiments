@@ -2,6 +2,10 @@ version: "3"
 services:
   hashgraphnodeone:
     build: "./"
+    links:
+        - couchdb:couchdb
+    depends_on:
+      - couchdb
     deploy:
       replicas: 1
       restart_policy:
@@ -10,9 +14,13 @@ services:
       - "52204:52204"
     networks:
       static-network:
-        ipv4_address: 172.255.128.2
+        ipv4_address: 172.255.128.1
   hashgraphnodetwo:
     build: "./"
+    links:
+          - couchdb:couchdb
+    depends_on:
+      - couchdb
     deploy:
       replicas: 1
       restart_policy:
@@ -21,7 +29,18 @@ services:
       - "52205:52205"
     networks:
       static-network:
-        ipv4_address: 172.255.128.3
+        ipv4_address: 172.255.128.2
+  couchdb:
+    image: couchdb:2.1
+    ports:
+      - "5984:5984"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: always
+    networks:
+        static-network:
+          ipv4_address: 172.255.128.3
   swagger:
     image: "swaggerapi/swagger-ui"
     depends_on:

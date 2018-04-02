@@ -9,7 +9,6 @@ public class IPOSTransaction {
 
 	@ExoTransaction(TransactionType.ADD_DOC)
 	public void addDocument(ExoMessage message, IPOSAppState state) {
-		Document document = (Document) message.payload;
-		state.addDocument(document.getHash());
+		state.addDocument(message);
 	}
 }

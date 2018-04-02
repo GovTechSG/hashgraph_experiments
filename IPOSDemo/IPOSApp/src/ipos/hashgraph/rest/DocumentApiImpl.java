@@ -3,17 +3,19 @@ package ipos.hashgraph.rest;
 import com.txmq.exo.core.ExoPlatformLocator;
 import com.txmq.exo.messaging.ExoMessage;
 import io.swagger.annotations.Api;
-import io.swagger.jaxrs.PATCH;
 import ipos.hashgraph.IPOSAppState;
+import ipos.hashgraph.model.ConsensedDocument;
 import ipos.hashgraph.model.Document;
-import ipos.hashgraph.model.Documents;
 import ipos.hashgraph.transaction.TransactionType;
+import ipos.hashgraph.utils.MessageTransformer;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Path("/Hashgraph/1.0.0")
 @Api(value = "/Hashgraph/1.0.0", description = "Documents endpoints")
@@ -40,13 +42,12 @@ public class DocumentApiImpl {
 	@Path("/documents")
 	public Response getDocuments() {
         IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
-		Documents result = new Documents();
 		if(state.getDocuments().size() == 0) {
-		    return Response.ok().entity(result).build();
+		    return Response.ok().entity(state.getDocuments()).build();
         }
 
-		result.setHash(state.getDocuments());
-		return Response.ok().entity(result).build();
+        List<ConsensedDocument> consensedDocuments = state.getDocuments().stream().map(m -> MessageTransformer.getConsensedDocument(m)).collect(Collectors.toList());
+        return Response.ok().entity(consensedDocuments).build();
 	}
 
 	@POST
@@ -70,17 +71,19 @@ public class DocumentApiImpl {
 	@Path("/verify/{hash}")
 	public Response verifyDoc(@PathParam("hash") String hash) {
 		IPOSAppState state = (IPOSAppState) ExoPlatformLocator.getPlatform().getState();
-		Optional<String> docHash = state.getDocuments().stream().filter(h -> h.equals(hash)).findAny();
+		Optional<ExoMessage> docHash = state.getDocuments().stream().filter(h -> {
+            Document document = (Document) h.getPayload();
+            return document.getHash().equals(hash);
+		}).findAny();
 
 		if(docHash.isPresent()) {
-			return Response.ok().entity("{\n" +
-					"  \"result\": true\n" +
-					"}").build();
+            ExoMessage exoMessage = docHash.get();
+            ConsensedDocument consensedDocument = MessageTransformer.getConsensedDocument(exoMessage);
+            return Response.ok().entity(consensedDocument).build();
 		} else {
 			return Response.status(Response.Status.BAD_REQUEST).entity("{\n" +
 					"  \"error\":\"Not Found\"\n" +
 					"}").build();
 		}
 	}
-
 }

@@ -1,0 +1,14 @@
+containers:
+  c1:
+    image: f54f2af310c1
+    expose: [52204]
+    ports:
+      52204: 52204
+
+  c2:
+    image: f54f2af310c1
+    expose: [52205]
+    ports:
+          52205: 52205
+    links:
+      c1: c1

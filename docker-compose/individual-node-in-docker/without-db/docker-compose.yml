@@ -10,7 +10,7 @@ services:
       - "52204:52204"
     networks:
       static-network:
-        ipv4_address: 172.255.128.2
+        ipv4_address: 172.255.128.1
   hashgraphnodetwo:
     build: "./"
     deploy:
@@ -21,7 +21,7 @@ services:
       - "52205:52205"
     networks:
       static-network:
-        ipv4_address: 172.255.128.3
+        ipv4_address: 172.255.128.2
   swagger:
     image: "swaggerapi/swagger-ui"
     depends_on:

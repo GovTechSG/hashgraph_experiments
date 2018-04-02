@@ -6,6 +6,7 @@ import com.swirlds.platform.Platform;
 import com.swirlds.platform.SwirldState;
 import com.txmq.exo.messaging.ExoMessage;
 import ipos.hashgraph.IPOSAppState;
+import ipos.hashgraph.utils.WebHookUtil;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -54,13 +55,16 @@ public class ExoState {
 			if (consensus) {
                 ExoMessage confirmedTransaction = new ExoMessage(message.getUuidHash(), message.getTransactionType(), message.getPayload(), timeCreated);
 				ExoPlatformLocator.getBlockLogger().addTransaction(confirmedTransaction, this.myName);
+				ExoPlatformLocator.getTransactionRouter().routeTransaction(confirmedTransaction, this);
+				//WebHookUtil.postToWebHook(confirmedTransaction);
 			}
-			ExoPlatformLocator.getTransactionRouter().routeTransaction(message, this);				
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ReflectiveOperationException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
